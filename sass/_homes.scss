@@ -1,0 +1,87 @@
+.homes {
+  display: grid;
+  margin: 15rem 0;
+  grid-column: center-start / center-end; // The nested grid is contained to the center of the 'container' grid
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(25rem, 1fr)
+  ); // Fit as many items into this space as possible
+  grid-gap: 7rem;
+
+  @media only screen and (max-width: $bp-small) {
+    margin: 6rem 0;
+  }
+}
+
+.home {
+  display: grid;
+  background-color: $color-grey-light-1;
+  grid-template-columns: repeat(
+    2,
+    1fr
+  ); // Defines 2 columns for the card content
+  grid-row-gap: 3.5rem;
+
+  &__img {
+    width: 100%;
+    grid-row: 1; // 4 levels of content in the card = 4 auto rows / span 1
+    grid-column: 1 / -1; // Defines its span across the card (100%)
+    z-index: 1;
+  }
+
+  &__like {
+    grid-row: 1; // Positions item relative to the 'home' grid (1st row - same as image)
+    grid-column: 2 / 3; // Otherwise it moves into an implicit column
+    fill: $color-primary;
+    height: 2.5rem;
+    width: 2.5rem;
+    z-index: 2;
+    justify-self: end; // Aligns it to the end of the 'home' card
+    margin: 1rem; // Spacing from card boundaries
+  }
+
+  &__name {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    justify-self: center; // Aligns it to the center (related to the 80% width)
+    align-self: end; // Vertical alignment
+    width: 80%; // This creates the margins on the side
+    font-family: $font-display;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 1.25rem;
+    background-color: $color-secondary;
+    color: #fff;
+    font-weight: 400;
+    z-index: 3;
+    transform: translateY(
+      50%
+    ); // 50% of the elements height aligns it to the centre of the line (overlap)
+  }
+
+  &__location,
+  &__rooms {
+    margin-top: 2.5rem; // Gives these a bit more space at the top
+  }
+
+  &__location,
+  &__rooms,
+  &__area,
+  &__price {
+    display: flex;
+    align-items: center; // Aligns icons and corresponding text
+    font-size: 1.5rem;
+    margin-left: 2rem;
+
+    svg {
+      fill: $color-primary;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  &__btn {
+    grid-column: 1 / -1; // Span the full width of card
+  }
+}

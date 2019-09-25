@@ -1,0 +1,50 @@
+// This file containes examples of using older methods if grid isn't supported by browser
+
+.features {
+  margin: 15rem 0;
+  grid-column: center-start / center-end;
+
+  @supports (display: grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 6rem;
+    align-items: start;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    margin: 6rem 0;
+  }
+}
+
+.feature {
+  // WITHOUT GRID ENABLED ->
+  // Floats are ignored by Grid + Flexbox, so it doesn't need to be removed
+
+  float: left;
+  width: 33.3333%;
+  margin-bottom: 6rem;
+
+  // WITH GRID ENABLED ->
+
+  @supports (display: grid) {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 2.5rem;
+
+  &__icon {
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+    grid-row: 1 / span 2; // -1 would mean end of the explicit grid
+    transform: translateY(-1rem);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}

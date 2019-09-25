@@ -1,0 +1,48 @@
+.realtors {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  grid-row-gap: 2rem;
+  justify-items: center; // Centers the header in the grid / the content already defines the width of the container
+  background-color: $color-secondary;
+  grid-column: col-start 7 / full-end;
+  padding: 3rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-column: 1 / -1;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 6rem;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: min-content max-content; // 7rem / max width of the text
+    grid-column-gap: 2rem;
+    grid-row-gap: 5vh; // Spacing needs to change depending on the viewport height
+    align-items: center; // Vertically centre the items in the cell
+
+    // On smaller screens, show 3 columns in a row
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-template-columns: repeat(3, min-content max-content);
+    }
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: min-content max-content; // Back to its original desktop state
+      grid-row-gap: 4rem;
+    }
+  }
+
+  &__img {
+    width: 7rem;
+    border-radius: 50%;
+    display: block;
+  }
+
+  &__sold {
+    text-rendering: uppercase;
+    color: $color-grey-light-2;
+    margin-top: -3px;
+  }
+}
